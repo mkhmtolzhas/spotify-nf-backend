@@ -11,7 +11,7 @@ artistRouter.get("/artists/:name", artistController.getArtistByName);
 
 artistRouter.post("/artists", artistController.createArtist);
 
-artistRouter.put("/artists/:id", artistController.updateArtist);
+artistRouter.put("/artists/:name", artistController.updateByArtistName);
 
 artistRouter.delete("/artists/:id", artistController.deleteArtist);
 

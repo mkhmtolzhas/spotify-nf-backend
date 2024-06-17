@@ -47,24 +47,25 @@ class ArtistController {
     }
   }
 
-    async updateArtist(req, res) {
+
+    async updateByArtistName(req, res) {
         try {
-        const artistId = req.params.id;
+        const artistName = req.params.name;
         const {
             name,
-            image,
-            description
+            image
         } = req.body;
-        if (!artistId) {
+        if (!artistName) {
             res.status(400).json({
-            message: 'Artist ID is required'
+            message: 'Artist name is required'
             });
         }
     
-        const artist = await Artist.findByIdAndUpdate(artistId, {
+        const artist = await Artist.findOneAndUpdate({
+            name: artistName
+        }, {
             name,
             image,
-            description
         });
         res.status(200).json(artist);
         } catch (error) {
