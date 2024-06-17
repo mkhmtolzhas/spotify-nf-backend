@@ -15,6 +15,8 @@ playlistRouter.get('/playlists', PlaylistController.getPlaylists);
 
 playlistRouter.get('/playlists/:id', PlaylistController.getPlaylist)
 
+playlistRouter.get('/playlists/author/:author', PlaylistController.getPlaylistByAuthor)
+
 playlistRouter.put('/playlists/:id', PlaylistController.updatePlaylist) 
 
 playlistRouter.delete('/playlists/:id', PlaylistController.deletePlaylist)

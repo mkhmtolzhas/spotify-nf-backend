@@ -4,13 +4,7 @@ import PlaylistService from './playlist-service';
 import Song from './models/Song';
 
 class PlaylistController {
-//   constructor(private playlistService: PlaylistService) {}
-
-//   async getPlaylist(req: Request, res: Response) {
-//     const playlistId = req.params.playlistId;
-//     const playlist = await this.playlistService.getPlaylist(playlistId);
-//     res.json(playlist);
-//   }
+    
     async createPlaylist(req: Request, res: Response) : Promise<void> {
         try {
             const { author, name, songs, image } = req.body;
@@ -111,6 +105,19 @@ class PlaylistController {
             const song = { title, year, author, link, playlist: playlistId };
             await Song.create(song);
             res.status(200).json(playlist);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getPlaylistByAuthor(req: Request, res: Response) : Promise<void> {
+        try {
+            const author = req.params.author;
+            if (!author) {
+                res.status(400).json({ message: 'Author is required' });
+            }
+            const playlists = await Playlist.find({ author });
+            res.status(200).json(playlists);
         } catch (error) {
             console.log(error);
         }
